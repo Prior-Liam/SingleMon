@@ -1,0 +1,1 @@
+When the Logger class is subclassed, we get an error. This is because the child class does not have access to the parent's constructor. The Logger constructor is private. This is important so that other things, such as the driver, do not have access to making multiple Loggers and breaking the Singleton pattern. 

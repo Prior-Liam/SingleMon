@@ -29,32 +29,32 @@ public class Logger {
         return -1;
     }
     public void trace(String message) {
-        if (currentLevelInt <= findIndex("ALL")) { //trace prints only when ALL is on
+        if (currentLevelInt <= getLevelInt("ALL")) { //trace prints only when ALL is on
             System.out.println(message);
         }
     }
     public void debug(String message) {
-        if (currentLevelInt <= findIndex("DEBUG")) {
+        if (currentLevelInt <= getLevelInt("DEBUG")) {
             System.out.println(message);
         }
     }
     public void info(String message) {
-        if (currentLevelInt <= findIndex("INFO")) {
+        if (currentLevelInt <= getLevelInt("INFO")) {
             System.out.println(message);
         }
     }
     public void warn(String message) {
-        if (currentLevelInt <= findIndex("WARN")) {
+        if (currentLevelInt <= getLevelInt("WARN")) {
             System.out.println(message);
         }
     }
     public void error(String message) {
-        if (currentLevelInt <= findIndex("ERROR")) {
+        if (currentLevelInt <= getLevelInt("ERROR")) {
             System.out.println(message);
         }
     }
     public void fatal(String message) {
-        if (currentLevelInt <= findIndex("FATAL")) {
+        if (currentLevelInt <= getLevelInt("FATAL")) {
             System.out.println(message);
         }
     }
