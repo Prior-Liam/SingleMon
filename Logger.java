@@ -1,12 +1,62 @@
 public class Logger {
     private static Logger uniqueLogger;
+    public String[] levels = {"ALL", "DEBUG", "INFO", "WARN", "ERROR", "FATAL", "OFF"};
+    private int currentLevelInt;
     private Logger() {
-
+        currentLevelInt= 0; //set to ALL
     }
-    public static synchronized getInstance() {
-        if (uniqueInstance == null) {
-            uniqueInstance = new Logger();
+    public static synchronized Logger getInstance() {
+        if (uniqueLogger == null) {
+            uniqueLogger = new Logger();
         }
-        return uniqueInstance;
+        return uniqueLogger;
     }
+
+    public void setLevel(String newLevel) {
+        currentLevelInt = getLevelInt(newLevel);
+    }
+    public String getLevel() {
+        return levels[currentLevelInt];
+    }
+    private int getLevelInt(String newLevel) {
+        //get index from string
+        int levelInt;
+        for (int i=0; i<8;i++) {
+            if (newLevel == levels[i]) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    public void trace(String message) {
+        if (currentLevelInt <= findIndex("ALL")) { //trace prints only when ALL is on
+            System.out.println(message);
+        }
+    }
+    public void debug(String message) {
+        if (currentLevelInt <= findIndex("DEBUG")) {
+            System.out.println(message);
+        }
+    }
+    public void info(String message) {
+        if (currentLevelInt <= findIndex("INFO")) {
+            System.out.println(message);
+        }
+    }
+    public void warn(String message) {
+        if (currentLevelInt <= findIndex("WARN")) {
+            System.out.println(message);
+        }
+    }
+    public void error(String message) {
+        if (currentLevelInt <= findIndex("ERROR")) {
+            System.out.println(message);
+        }
+    }
+    public void fatal(String message) {
+        if (currentLevelInt <= findIndex("FATAL")) {
+            System.out.println(message);
+        }
+    }
+    // no function for off or all
 }
